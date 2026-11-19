@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="./favicon.ico" />
+    <!-- Preload is necessary because we show these images when we disconnect from the server,
+    but at that point we cannot load these images from the server -->
+    <link rel="preload" href="./assets/gradient-yHQUC_QB.png" as="image" />
+    <link rel="preload" href="./assets/noise-60BoTA8O.png" as="image" />
+    <!-- Preload the fonts -->
+    <link rel="preload" href="./assets/Lora-VariableFont_wght-CZceb_kH.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/PTSans-Regular-Bam3NpBI.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/PTSans-Bold-C_DwAp7Z.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Regular-CEsLFVD9.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Medium-D5MAsWEG.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Bold-C6PDArdf.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="a marimo app" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <link rel="manifest" href="./manifest.json" />
+
+    <script data-marimo="true">
+      function __resizeIframe(obj) {
+        const scrollbarHeight = 20; // Max between windows, mac, and linux
+
+        function setHeight() {
+          // Guard against race condition where iframe isn't ready
+          if (!obj.contentWindow?.document?.documentElement) {
+            return;
+          }
+          const element = obj.contentWindow.document.documentElement;
+          // If there is no vertical scrollbar, we don't need to resize the iframe
+          if (element.scrollHeight === element.clientHeight) {
+            return;
+          }
+
+          // Create a new height that includes the scrollbar height if it's visible
+          const hasHorizontalScrollbar = element.scrollWidth > element.clientWidth;
+          const newHeight = element.scrollHeight + (hasHorizontalScrollbar ? scrollbarHeight : 0);
+
+          // Only update the height if it's different from the current height
+          if (obj.style.height !== `${newHeight}px`) {
+            obj.style.height = `${newHeight}px`;
+          }
+        }
+
+        // Resize the iframe to the height of the content and bottom scrollbar height
+        setHeight();
+
+        // Resize the iframe when the content changes
+        const resizeObserver = new ResizeObserver((_entries) => {
+          setHeight();
+        });
+        // Only observe if iframe content is ready
+        if (obj.contentWindow?.document?.body) {
+          resizeObserver.observe(obj.contentWindow.document.body);
+        }
+      }
+    </script>
+    <marimo-filename hidden>notebook.py</marimo-filename>
+    <!-- TODO(Trevor): Legacy, required by VS Code plugin. Remove when plugin is updated (see marimo/server/_templates/template.py) -->
+    <marimo-version data-version="{{ version }}" hidden></marimo-version>
+    <marimo-user-config data-config="{{ user_config }}" hidden></marimo-user-config>
+    <marimo-server-token data-token="{{ server_token }}" hidden></marimo-server-token>
+    <!-- /TODO -->
+    <title>world bank dashboard</title>
+    <script type="module" crossorigin src="./assets/index-s-M1OXjs.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/rolldown-runtime-B0Z9INg1.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-DVplv7_D.js">
+    <link rel="modulepreload" crossorigin href="./assets/compiler-runtime-BrajqUja.js">
+    <link rel="modulepreload" crossorigin href="./assets/useEvent-Dfcbgjhg.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-dom-_LrxgvjW.js">
+    <link rel="modulepreload" crossorigin href="./assets/schemas-Dv42wLFq.js">
+    <link rel="modulepreload" crossorigin href="./assets/isObject-BCaOs5rp.js">
+    <link rel="modulepreload" crossorigin href="./assets/isSymbol-oX0TOjjx.js">
+    <link rel="modulepreload" crossorigin href="./assets/now-Cmx0b_zA.js">
+    <link rel="modulepreload" crossorigin href="./assets/debounce-aFmHgJZY.js">
+    <link rel="modulepreload" crossorigin href="./assets/isArrayLikeObject-DnwgSs_Z.js">
+    <link rel="modulepreload" crossorigin href="./assets/_baseMerge-CQpUq7ep.js">
+    <link rel="modulepreload" crossorigin href="./assets/objects-snlMn4yk.js">
+    <link rel="modulepreload" crossorigin href="./assets/useEventListener-D9cftcHj.js">
+    <link rel="modulepreload" crossorigin href="./assets/invariant-Ci2dTZ72.js">
+    <link rel="modulepreload" crossorigin href="./assets/config-VPSq73n8.js">
+    <link rel="modulepreload" crossorigin href="./assets/utils-B4K466FK.js">
+    <link rel="modulepreload" crossorigin href="./assets/session-DqoWmb7X.js">
+    <link rel="modulepreload" crossorigin href="./assets/Deferred-CrTnjj37.js">
+    <link rel="modulepreload" crossorigin href="./assets/config-DX8Y2WbJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/clsx-DB0hHKMi.js">
+    <link rel="modulepreload" crossorigin href="./assets/cn-ldLVeaqm.js">
+    <link rel="modulepreload" crossorigin href="./assets/jsx-runtime-B74pBk57.js">
+    <link rel="modulepreload" crossorigin href="./assets/fullscreen-B9tHcfpV.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-iaThVDkA.js">
+    <link rel="modulepreload" crossorigin href="./assets/menu-items-BrwnTgyK.js">
+    <link rel="modulepreload" crossorigin href="./assets/use-restore-focus-BxEGwIbk.js">
+    <link rel="modulepreload" crossorigin href="./assets/createLucideIcon-DfJ2oMlA.js">
+    <link rel="modulepreload" crossorigin href="./assets/circle-DXf-VWZG.js">
+    <link rel="modulepreload" crossorigin href="./assets/button-COI-NGrx.js">
+    <link rel="modulepreload" crossorigin href="./assets/check-BQNapYaf.js">
+    <link rel="modulepreload" crossorigin href="./assets/I18nProvider-Cg2I_s1_.js">
+    <link rel="modulepreload" crossorigin href="./assets/useNumberFormatter-D7O_26UI.js">
+    <link rel="modulepreload" crossorigin href="./assets/select-DTBn5eTb.js">
+    <link rel="modulepreload" crossorigin href="./assets/toast-BGzLGnvw.js">
+    <link rel="modulepreload" crossorigin href="./assets/tooltip-C9TuY18o.js">
+    <link rel="modulepreload" crossorigin href="./assets/paths-bkIFVj8h.js">
+    <link rel="modulepreload" crossorigin href="./assets/useLifecycle-Mq4gc5kS.js">
+    <link rel="modulepreload" crossorigin href="./assets/toDate-DOj9Q6uC.js">
+    <link rel="modulepreload" crossorigin href="./assets/database-zap-B_PMVg8T.js">
+    <link rel="modulepreload" crossorigin href="./assets/alert-dialog-BaPGzeOK.js">
+    <link rel="modulepreload" crossorigin href="./assets/arrays-BqUx5USx.js">
+    <link rel="modulepreload" crossorigin href="./assets/once-Haz_uxEL.js">
+    <link rel="modulepreload" crossorigin href="./assets/numbers-Mk3-CcoU.js">
+    <link rel="modulepreload" crossorigin href="./assets/useDebounce-B_ccBZTp.js">
+    <link rel="modulepreload" crossorigin href="./assets/input-BoBxR50a.js">
+    <link rel="modulepreload" crossorigin href="./assets/use-toast-Wu434mLr.js">
+    <link rel="modulepreload" crossorigin href="./assets/requests-lt0JK8Jt.js">
+    <link rel="modulepreload" crossorigin href="./assets/uuid-k9DpjH68.js">
+    <link rel="modulepreload" crossorigin href="./assets/write-secret-modal-DzKAInL2.js">
+    <link rel="modulepreload" crossorigin href="./assets/plus-C5silF6g.js">
+    <link rel="modulepreload" crossorigin href="./assets/trash-2-DcgaW8fn.js">
+    <link rel="modulepreload" crossorigin href="./assets/preload-helper-uBIymjUX.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-Cny7_yZb.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-DBMV4gqt.js">
+    <link rel="modulepreload" crossorigin href="./assets/capabilities-BJvf-MD4.js">
+    <link rel="modulepreload" crossorigin href="./assets/cjs-C49f7GXV.js">
+    <link rel="modulepreload" crossorigin href="./assets/createReducer-DgRODTW6.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-qhAY4L2r.js">
+    <link rel="modulepreload" crossorigin href="./assets/marked.esm-B_3iMIUq.js">
+    <link rel="modulepreload" crossorigin href="./assets/strings-B2vv-ENv.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-BOfh4hMd.js">
+    <link rel="modulepreload" crossorigin href="./assets/badge-crT3E0Rm.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-DtH-7lot.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-BmExfiwX.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-1tmpVXyz.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-LSsCJjA3.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-DusFODSa.js">
+    <link rel="modulepreload" crossorigin href="./assets/stex-Dc5bKD4z.js">
+    <link rel="modulepreload" crossorigin href="./assets/useTheme-COhSHkCj.js">
+    <link rel="modulepreload" crossorigin href="./assets/useAsyncData-C7aJJz0Y.js">
+    <link rel="modulepreload" crossorigin href="./assets/purify.es--06brOip.js">
+    <link rel="modulepreload" crossorigin href="./assets/cells-BRkCaSsh.js">
+    <link rel="modulepreload" crossorigin href="./assets/coerce-CpE6kUdX.js">
+    <link rel="modulepreload" crossorigin href="./assets/get-DjNf4SIX.js">
+    <link rel="modulepreload" crossorigin href="./assets/_hasPath-BmRQipI0.js">
+    <link rel="modulepreload" crossorigin href="./assets/hasIn-yw4sIeJR.js">
+    <link rel="modulepreload" crossorigin href="./assets/_baseSet-Bpdo9AvU.js">
+    <link rel="modulepreload" crossorigin href="./assets/pick-DKIID_Mo.js">
+    <link rel="modulepreload" crossorigin href="./assets/state-BAJYRhmO.js">
+    <link rel="modulepreload" crossorigin href="./assets/state-C3oDoyFe.js">
+    <link rel="modulepreload" crossorigin href="./assets/LazyAnyLanguageCodeMirror-CKcCbG2G.js">
+    <link rel="modulepreload" crossorigin href="./assets/copy-D8O_CYCG.js">
+    <link rel="modulepreload" crossorigin href="./assets/micromark-factory-space-D9Dr-k4J.js">
+    <link rel="modulepreload" crossorigin href="./assets/chunk-YOKDWASO-BIpRENEC.js">
+    <link rel="modulepreload" crossorigin href="./assets/markdown-renderer-BG3sp2rs.js">
+    <link rel="modulepreload" crossorigin href="./assets/copy-Djr5m5ac.js">
+    <link rel="modulepreload" crossorigin href="./assets/copy-icon-BIiRXh_3.js">
+    <link rel="modulepreload" crossorigin href="./assets/useRunCells-B2vUhREg.js">
+    <link rel="modulepreload" crossorigin href="./assets/RenderHTML-BbOqmHy3.js">
+    <link rel="modulepreload" crossorigin href="./assets/blob-D5nfNHOo.js">
+    <link rel="modulepreload" crossorigin href="./assets/kbd-pdKBv96t.js">
+    <link rel="modulepreload" crossorigin href="./assets/useInstallPackage-iX1eufdl.js">
+    <link rel="modulepreload" crossorigin href="./assets/errors-DCrsa1nH.js">
+    <link rel="modulepreload" crossorigin href="./assets/api-BeC_VSGv.js">
+    <link rel="modulepreload" crossorigin href="./assets/share-BZW3tzEX.js">
+    <link rel="modulepreload" crossorigin href="./assets/events-CbeVJ6OD.js">
+    <link rel="modulepreload" crossorigin href="./assets/state-_Qai_QyX.js">
+    <link rel="modulepreload" crossorigin href="./assets/pair-CaQyK6En.js">
+    <link rel="modulepreload" crossorigin href="./assets/ErrorBoundary-Gl5nCA8C.js">
+    <link rel="modulepreload" crossorigin href="./assets/config-BOKzA3tF.js">
+    <link rel="modulepreload" crossorigin href="./assets/chevron-right-eAtVhbNZ.js">
+    <link rel="modulepreload" crossorigin href="./assets/dropdown-menu-C1rnl-0o.js">
+    <link rel="modulepreload" crossorigin href="./assets/html-to-image-DK9Zl1lU.js">
+    <link rel="modulepreload" crossorigin href="./assets/download-DCJXy66H.js">
+    <link rel="modulepreload" crossorigin href="./assets/switch-CTaiAjrz.js">
+    <link rel="modulepreload" crossorigin href="./assets/tabs-BuQlZFbt.js">
+    <link rel="modulepreload" crossorigin href="./assets/table-DG7Ap4H4.js">
+    <link rel="modulepreload" crossorigin href="./assets/eye-off-CxVozGAC.js">
+    <link rel="modulepreload" crossorigin href="./assets/refresh-cw-Qw1f8Jhy.js">
+    <link rel="modulepreload" crossorigin href="./assets/tree-actions-GM5E_bUs.js">
+    <link rel="modulepreload" crossorigin href="./assets/ellipsis-63DyBLHQ.js">
+    <link rel="modulepreload" crossorigin href="./assets/external-link-UrX9KO36.js">
+    <link rel="modulepreload" crossorigin href="./assets/spinner-DyNE-o8o.js">
+    <link rel="modulepreload" crossorigin href="./assets/message-circle-C3rKm8_a.js">
+    <link rel="modulepreload" crossorigin href="./assets/hat-glasses-C8RhSVii.js">
+    <link rel="modulepreload" crossorigin href="./assets/package-GSoSTiIK.js">
+    <link rel="modulepreload" crossorigin href="./assets/datasource-Cq6x_5ML.js">
+    <link rel="modulepreload" crossorigin href="./assets/alert-DTaqCu_d.js">
+    <link rel="modulepreload" crossorigin href="./assets/state-XsPO8hNi.js">
+    <link rel="modulepreload" crossorigin href="./assets/cell-link-LSth_8hT.js">
+    <link rel="modulepreload" crossorigin href="./assets/MarimoErrorOutput-D60XkCny.js">
+    <link rel="modulepreload" crossorigin href="./assets/useDateFormatter-DA-62E-Y.js">
+    <link rel="modulepreload" crossorigin href="./assets/en-US-Buu61juQ.js">
+    <link rel="modulepreload" crossorigin href="./assets/isValid-q_Ad80ug.js">
+    <link rel="modulepreload" crossorigin href="./assets/dates-BbFQ2oE4.js">
+    <link rel="modulepreload" crossorigin href="./assets/defaultLocale-CNPGWpMu.js">
+    <link rel="modulepreload" crossorigin href="./assets/precisionRound-Bq_nmf5u.js">
+    <link rel="modulepreload" crossorigin href="./assets/defaultLocale-D5bOh7g6.js">
+    <link rel="modulepreload" crossorigin href="./assets/vega-loader.browser-CLRkNgm7.js">
+    <link rel="modulepreload" crossorigin href="./assets/tooltip-mT3CGest.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-icons.esm-D6tfmvq8.js">
+    <link rel="modulepreload" crossorigin href="./assets/extends-CvVTau-c.js">
+    <link rel="modulepreload" crossorigin href="./assets/objectWithoutPropertiesLoose-Do6ywDBO.js">
+    <link rel="modulepreload" crossorigin href="./assets/useIframeCapabilities-CwTkczVN.js">
+    <link rel="modulepreload" crossorigin href="./assets/error-banner-Cd69vvyX.js">
+    <link rel="modulepreload" crossorigin href="./assets/utils-CaQYvazl.js">
+    <link rel="modulepreload" crossorigin href="./assets/formats-yZ06h1Pl.js">
+    <link rel="modulepreload" crossorigin href="./assets/table-vrvqpuKJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-resizable-panels.browser.esm-Dbe0MrFr.js">
+    <link rel="modulepreload" crossorigin href="./assets/JsonOutput-D6HIIsCb.js">
+    <link rel="modulepreload" crossorigin href="./assets/chart-no-axes-column-C4_v6fQW.js">
+    <link rel="modulepreload" crossorigin href="./assets/square-function-_W_Lo0P4.js">
+    <link rel="modulepreload" crossorigin href="./assets/spec-BfSBcO5B.js">
+    <link rel="modulepreload" crossorigin href="./assets/semaphore-BjoL5P0h.js">
+    <link rel="modulepreload" crossorigin href="./assets/fileToBase64-BgBraYAr.js">
+    <link rel="modulepreload" crossorigin href="./assets/useBoolean-BDD6_xQQ.js">
+    <link rel="modulepreload" crossorigin href="./assets/code-xml-SQaZqvcO.js">
+    <link rel="modulepreload" crossorigin href="./assets/file-headphone-Dl35U6h3.js">
+    <link rel="modulepreload" crossorigin href="./assets/file-BPBVl9pl.js">
+    <link rel="modulepreload" crossorigin href="./assets/image-wZvTj8WY.js">
+    <link rel="modulepreload" crossorigin href="./assets/file-icons-CdJgUy-I.js">
+    <link rel="modulepreload" crossorigin href="./assets/globe-UdPdIbF7.js">
+    <link rel="modulepreload" crossorigin href="./assets/esm-CI_o7NhW.js">
+    <link rel="modulepreload" crossorigin href="./assets/useAddCell-GR7eEQrT.js">
+    <link rel="modulepreload" crossorigin href="./assets/readonly-python-code-DCSMIsTX.js">
+    <link rel="modulepreload" crossorigin href="./assets/data-grid-types-DgHVN_Zz.js">
+    <link rel="modulepreload" crossorigin href="./assets/glide-utils-CIrAxdjv.js">
+    <link rel="modulepreload" crossorigin href="./assets/column-preview-Cm2D6vyX.js">
+    <link rel="modulepreload" crossorigin href="./assets/square-BPmgQFnh.js">
+    <link rel="modulepreload" crossorigin href="./assets/triangle-alert-DmIqR8sY.js">
+    <link rel="modulepreload" crossorigin href="./assets/prop-types-Djf4O40e.js">
+    <link rel="modulepreload" crossorigin href="./assets/es-Cqst59WX.js">
+    <link rel="modulepreload" crossorigin href="./assets/package-data-dv4FBHxR.js">
+    <link rel="modulepreload" crossorigin href="./assets/markdown-export-DzhB1FrN.js">
+    <link rel="modulepreload" crossorigin href="./assets/renderShortcut-BkVJQ_Zh.js">
+    <link rel="modulepreload" crossorigin href="./assets/bundle.esm-D3tw5rqW.js">
+    <link rel="modulepreload" crossorigin href="./assets/icons-CiZ_8zS-.js">
+    <link rel="modulepreload" crossorigin href="./assets/useDeepCompareMemoize-DFIVN9dn.js">
+    <link rel="modulepreload" crossorigin href="./assets/pathUtils-DPmlLd-r.js">
+    <link rel="modulepreload" crossorigin href="./assets/floating-outline-XD9FAV-f.js">
+    <link rel="stylesheet" crossorigin href="./assets/cells-0PFKL3SH.css">
+    <link rel="stylesheet" crossorigin href="./assets/markdown-renderer-DjIHoF9Z.css">
+    <link rel="stylesheet" crossorigin href="./assets/JsonOutput-B0GmlMnR.css">
+    <link rel="stylesheet" crossorigin href="./assets/index-Bcdzex-3.css">
+  <marimo-wasm hidden=""></marimo-wasm>
+    <script>
+        if (window.location.protocol === 'file:') {
+            alert('Warning: This file must be served by an HTTP server to function correctly.');
+        }
+    </script>
+    
+    <style>
+        #save-button {
+            display: none !important;
+        }
+        #filename-input {
+            display: none !important;
+        }
+    </style>
+    
+<script data-marimo="true">
+    Object.defineProperty(window, "__MARIMO_EXPORT_CONTEXT__", {
+        value: Object.freeze({
+            trusted: true,
+            notebookCode: "# /// script\n# requires-python = \"\u003E=3.13\"\n# dependencies = [\"altair==6.0.0\", \"marimo\u003E=0.25.2\", \"numpy==2.4.3\", \"pandas==3.0.2\", \"pingouin==0.7.0\"]\n# \n# [tool.marimo.export]\n# lock_kind = \"observed\"\n# ///\n\nimport marimo\n\n__generated_with = \"0.25.2\"\napp = marimo.App(width=\"medium\")\n\n\n@app.cell\ndef _():\n    import marimo as mo\n    import pandas as pd\n    import altair as alt\n    import numpy as np\n    import pingouin as pg\n\n    return alt, mo, np, pd, pg\n\n\n@app.cell\ndef _(pd):\n    base_url = \"https://docs.google.com/spreadsheets/d/\"\n    doc_id = \"1YY5iwL8J53umfHMNhJd1m-MbRPtRpX65oyxhq1KjzuI/\"\n    doc_format = \"export?format=csv\"\n\n    url = base_url + doc_id + doc_format\n\n    df_raw = pd.read_csv(url)\n    return (df_raw,)\n\n\n@app.cell\ndef _():\n    ### CONFIG: written entirely by AI. Adapt this cell to your group's choices.\n    GROUP = \"06\"\n    CLAIM = \"As countries get richer, they pollute more.\"\n    MEMBERS = \"Rahevar Sumitsinh Dharmendrasinh , Shreenath Shreepathi Hebbar\"\n\n    # Column names in df_raw for country and year. CHECK with df_raw.columns!\n    COUNTRY_COL = \"country\"\n    YEAR_COL = \"date\"\n\n    COUNTRIES = [\"Brazil\", \"Germany\", \"India\", \"China\", \"Nigeria\"]  # \u003E= 5\n    MAIN = \"co2_per_capita\"\n    LABELS = {\n        \"co2_per_capita\": \"CO2 emissions per capita (tonnes per person)\",\n        \"gdp_per_capita\": \"GDP per capita (US$)\",\n        \"renewvable_energy_consumption%\": \"Renewable energy (% of consumption)\",\n        \"population_density\": \"Population density (people per km\u00b2)\",\n    }\n    # dropdown: \u003E= 3 indicators to compare with (NOT the main one)\n    COMPARE = {\n        LABELS[_k]: _k\n        for _k in [\n            \"gdp_per_capita\",\n            \"renewvable_energy_consumption%\",\n            \"population_density\",\n        ]\n    }\n\n    # +1 = claim expects a positive correlation, -1 = a negative one\n    EXPECTED_SIGN = 1\n    METHOD = \"spearman\"  # or \"pearson\"\n\n    WHY_CLAIM = \"TODO: why is this claim worth checking?\"\n    WHY_INDICATORS = \"TODO: why these indicators?\"\n    WHY_COUNTRIES = \"TODO: why these countries?\"\n    WHY_METHOD = \"TODO: why this method? (skewed values, outliers, curves ...)\"\n    return (\n        CLAIM,\n        COMPARE,\n        COUNTRIES,\n        EXPECTED_SIGN,\n        GROUP,\n        LABELS,\n        MAIN,\n        MEMBERS,\n        METHOD,\n        WHY_CLAIM,\n        WHY_COUNTRIES,\n        WHY_INDICATORS,\n        WHY_METHOD,\n    )\n\n\n@app.cell\ndef _(COUNTRIES, df_raw, pd):\n    ### DATA PREP: written entirely by AI\n    df = df_raw.rename(columns={\"date\": \"year\"})\n    if not pd.api.types.is_numeric_dtype(df[\"year\"]):\n        df[\"year\"] = pd.to_datetime(df[\"year\"], errors=\"coerce\").dt.year\n    df = df[df[\"year\"].between(2000, 2020) \u0026 df[\"country\"].isin(COUNTRIES)].copy()\n    df[\"gdp_per_capita\"] = df[\"GDP_current_US\"] / df[\"population\"]\n    df[\"co2_per_capita\"] = df[\"CO2_emisions\"] * 1000 / df[\"population\"]\n    df[\"rural_population%\"] = df[\"rural_population\"] / df[\"population\"] * 100\n    return (df,)\n\n\n@app.cell\ndef _(CLAIM, GROUP, MEMBERS, WHY_CLAIM, WHY_COUNTRIES, WHY_INDICATORS, mo):\n    ### TITLE + JUSTIFICATION: written entirely by AI\n    mo.md(\n        f\"\"\"\n    # Group {GROUP} \u00b7 \"{CLAIM}\"\n    **Members:** {MEMBERS}\n\n    **Why this claim:** {WHY_CLAIM} \u0026nbsp;\u00b7\u0026nbsp; **Why these indicators:** {WHY_INDICATORS} \u0026nbsp;\u00b7\u0026nbsp; **Why these countries:** {WHY_COUNTRIES}\n\n    *How to use: choose an indicator and a period. Each dot is one country in one year; lines are trends per country.*\n    \"\"\"\n    )\n    return\n\n\n@app.cell\ndef _(COMPARE, mo):\n    ### CONTROLS: written entirely by AI\n    indicator = mo.ui.dropdown(\n        options=COMPARE, value=list(COMPARE)[0], label=\"Compare with\"\n    )\n    period = mo.ui.range_slider(\n        start=2000, stop=2020, step=1, value=[2000, 2020], label=\"Period\", show_value=True\n    )\n    mo.hstack([indicator, period], justify=\"start\", gap=2)\n    return indicator, period\n\n\n@app.cell\ndef _(MAIN, df, indicator, period):\n    ### SELECTION: written entirely by AI\n    x_col = indicator.value\n    start_year, end_year = period.value\n    df_sel = df[df[\"year\"].between(start_year, end_year)]\n    plot_df = (\n        df_sel[[\"country\", \"year\", x_col, MAIN]]\n        .dropna()\n        .rename(columns={x_col: \"x\", MAIN: \"y\"})\n    )\n    return df_sel, end_year, plot_df, start_year, x_col\n\n\n@app.cell\ndef _(COUNTRIES, MAIN, METHOD, df_sel, pd, pg, x_col):\n    ### CORRELATION PER COUNTRY: written entirely by AI\n    _rows = []\n    notes = []\n    for _c in COUNTRIES:\n        _d = df_sel.loc[df_sel[\"country\"] == _c, [x_col, MAIN]].dropna()\n        if len(_d) \u003C 5:\n            notes.append(\n                f\"**{_c}:** only {len(_d)} year(s) with data for this pair and period, so no test.\"\n            )\n            continue\n        if _d[x_col].nunique() \u003C 2 or _d[MAIN].nunique() \u003C 2:\n            notes.append(\n                f\"**{_c}:** one of the indicators does not change in this period, so no test.\"\n            )\n            continue\n        _res = pg.corr(_d[x_col], _d[MAIN], method=METHOD)\n        # column names differ a bit between pingouin versions\n        _ci_col = [_k for _k in _res.columns if _k.startswith(\"CI95\")][0]\n        _p_col = \"p_val\" if \"p_val\" in _res.columns else \"p-val\"\n        _ci = _res[_ci_col].iloc[0]\n        _rows.append(\n            {\n                \"country\": _c,\n                \"n\": int(_res[\"n\"].iloc[0]),\n                \"r\": float(_res[\"r\"].iloc[0]),\n                \"p_val\": float(_res[_p_col].iloc[0]),\n                \"CI95\": f\"[{_ci[0]:.2f}, {_ci[1]:.2f}]\",\n            }\n        )\n    results = pd.DataFrame(_rows, columns=[\"country\", \"n\", \"r\", \"p_val\", \"CI95\"])\n    return notes, results\n\n\n@app.cell\ndef _(METHOD, WHY_METHOD, end_year, mo, notes, results, start_year):\n    ### TABLE + WARNINGS: written entirely by AI\n    _show = results.copy()\n    _show[\"r\"] = _show[\"r\"].round(2)\n    _show[\"p\"] = _show[\"p_val\"].map(lambda _p: \"\u003C0.001\" if _p \u003C 0.001 else f\"{_p:.3f}\")\n    _show = _show[[\"country\", \"n\", \"r\", \"p\", \"CI95\"]].rename(\n        columns={\"country\": \"Country\"}\n    )\n    table = mo.ui.table(\n        _show,\n        selection=None,\n        pagination=False,\n        show_download=False,\n        show_column_summaries=False,\n    )\n    callouts = mo.vstack([mo.callout(mo.md(_m), kind=\"warn\") for _m in notes])\n    method_note = mo.md(\n        f\"**{METHOD.capitalize()}**, {start_year}\u2013{end_year}. {WHY_METHOD}\"\n    )\n    return callouts, method_note, table\n\n\n@app.cell\ndef _(\n    EXPECTED_SIGN,\n    LABELS,\n    MAIN,\n    METHOD,\n    end_year,\n    np,\n    results,\n    start_year,\n    x_col,\n):\n    ### VERDICT (draft, edit thresholds/wording as a group): written entirely by AI\n    _n = len(results)\n    if _n == 0:\n        verdict_text = (\n            \"**Verdict: cannot tell.** No country has enough data for this pair and period.\"\n        )\n    else:\n        _sign = np.sign(results[\"r\"])\n        _sig = results[\"p_val\"] \u003C 0.05\n        _same = int((_sign == EXPECTED_SIGN).sum())\n        _same_sig = int(((_sign == EXPECTED_SIGN) \u0026 _sig).sum())\n        _opp_sig = int(((_sign == -EXPECTED_SIGN) \u0026 _sig).sum())\n        _mean_abs = float(results[\"r\"].abs().mean())\n        if _mean_abs \u003C 0.1:\n            _strength = \"negligible\"\n        elif _mean_abs \u003C 0.3:\n            _strength = \"small\"\n        elif _mean_abs \u003C 0.5:\n            _strength = \"moderate\"\n        else:\n            _strength = \"large\"\n\n        if _same_sig \u003E= 0.8 * _n:\n            _label = \"supports the claim\"\n        elif _opp_sig \u003E= 0.8 * _n:\n            _label = \"contradicts the claim\"\n        elif _same_sig + _opp_sig == 0:\n            _label = \"cannot tell (nothing significant)\"\n        else:\n            _label = \"mixed picture\"\n\n        verdict_text = (\n            f\"**Verdict: {_label}.** For {LABELS[x_col]} vs. {LABELS[MAIN]} \"\n            f\"({start_year}\u2013{end_year}, {METHOD}), the correlation points in the expected \"\n            f\"direction in {_same} of {_n} countries and is significant in \"\n            f\"{int(_sig.sum())} of them; the average strength is {_strength} \"\n            f\"(mean |r| = {_mean_abs:.2f}). \"\n            \"Years are not independent, so p-values are probably too optimistic, and shared \"\n            \"time trends can create strong correlations (see the *Over time* tab). \"\n            \"A correlation cannot show that one indicator causes the other; a third factor \"\n            \"could drive both.\"\n        )\n    return (verdict_text,)\n\n\n@app.cell\ndef _(LABELS, MAIN, alt, plot_df, x_col):\n    ### SCATTERPLOT: written entirely by AI\n    _base = alt.Chart(plot_df).encode(\n        x=alt.X(\"x:Q\", title=LABELS[x_col], scale=alt.Scale(zero=False)),\n        y=alt.Y(\"y:Q\", title=LABELS[MAIN], scale=alt.Scale(zero=False)),\n        color=alt.Color(\"country:N\", title=\"Country\"),\n    )\n    _points = _base.mark_circle(size=45, opacity=0.7).encode(\n        tooltip=[\n            alt.Tooltip(\"country:N\", title=\"Country\"),\n            alt.Tooltip(\"year:Q\", title=\"Year\", format=\"d\"),\n            alt.Tooltip(\"x:Q\", title=LABELS[x_col], format=\",.2f\"),\n            alt.Tooltip(\"y:Q\", title=LABELS[MAIN], format=\",.2f\"),\n        ]\n    )\n    _lines = _base.transform_regression(\"x\", \"y\", groupby=[\"country\"]).mark_line()\n    scatter = (_points + _lines).properties(width=400, height=300)\n    return (scatter,)\n\n\n@app.cell\ndef _(LABELS, MAIN, alt, df_sel, mo, x_col):\n    ### OVER TIME + DISTRIBUTIONS (tabs content): written entirely by AI\n    def _line(_col):\n        _d = df_sel[[\"country\", \"year\", _col]].rename(columns={_col: \"value\"})\n        return (\n            alt.Chart(_d)\n            .mark_line(point=True)\n            .encode(\n                x=alt.X(\"year:Q\", title=\"Year\", axis=alt.Axis(format=\"d\")),\n                y=alt.Y(\"value:Q\", title=LABELS[_col], scale=alt.Scale(zero=False)),\n                color=alt.Color(\"country:N\", title=\"Country\"),\n                tooltip=[\n                    alt.Tooltip(\"country:N\", title=\"Country\"),\n                    alt.Tooltip(\"year:Q\", title=\"Year\", format=\"d\"),\n                    alt.Tooltip(\"value:Q\", title=LABELS[_col], format=\",.2f\"),\n                ],\n            )\n            .properties(width=330, height=230)\n        )\n\n    def _hist(_col):\n        _d = df_sel[[\"country\", _col]].dropna().rename(columns={_col: \"value\"})\n        return (\n            alt.Chart(_d)\n            .mark_bar()\n            .encode(\n                x=alt.X(\"value:Q\", bin=alt.Bin(maxbins=15), title=LABELS[_col]),\n                y=alt.Y(\"count()\", title=\"Country-years\"),\n                color=alt.Color(\"country:N\", title=\"Country\"),\n            )\n            .properties(width=330, height=200)\n        )\n\n    time_view = mo.hstack([_line(MAIN), _line(x_col)], align=\"start\")\n    dist_view = mo.hstack([_hist(MAIN), _hist(x_col)], align=\"start\")\n    return dist_view, time_view\n\n\n@app.cell\ndef _(\n    callouts,\n    dist_view,\n    method_note,\n    mo,\n    scatter,\n    table,\n    time_view,\n    verdict_text,\n):\n    ### LAYOUT WITH TABS: written entirely by AI\n    _side = mo.vstack([method_note, table, callouts])\n    _claim_check = mo.vstack(\n        [mo.hstack([scatter, _side], align=\"start\", gap=2), mo.md(verdict_text)]\n    )\n    mo.ui.tabs(\n        {\n            \"Claim check\": _claim_check,\n            \"Over time\": time_view,\n            \"Distributions\": dist_view,\n        }\n    )\n    return\n\n\nif __name__ == \"__main__\":\n    app.run()\n",
+        }),
+        writable: false,
+        configurable: false,
+    });
+</script>
+<marimo-code hidden="">%23%20%2F%2F%2F%20script%0A%23%20requires-python%20%3D%20%22%3E%3D3.13%22%0A%23%20dependencies%20%3D%20%5B%22altair%3D%3D6.0.0%22%2C%20%22marimo%3E%3D0.25.2%22%2C%20%22numpy%3D%3D2.4.3%22%2C%20%22pandas%3D%3D3.0.2%22%2C%20%22pingouin%3D%3D0.7.0%22%5D%0A%23%20%0A%23%20%5Btool.marimo.export%5D%0A%23%20lock_kind%20%3D%20%22observed%22%0A%23%20%2F%2F%2F%0A%0Aimport%20marimo%0A%0A__generated_with%20%3D%20%220.25.2%22%0Aapp%20%3D%20marimo.App(width%3D%22medium%22)%0A%0A%0A%40app.cell%0Adef%20_()%3A%0A%20%20%20%20import%20marimo%20as%20mo%0A%20%20%20%20import%20pandas%20as%20pd%0A%20%20%20%20import%20altair%20as%20alt%0A%20%20%20%20import%20numpy%20as%20np%0A%20%20%20%20import%20pingouin%20as%20pg%0A%0A%20%20%20%20return%20alt%2C%20mo%2C%20np%2C%20pd%2C%20pg%0A%0A%0A%40app.cell%0Adef%20_(pd)%3A%0A%20%20%20%20base_url%20%3D%20%22https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F%22%0A%20%20%20%20doc_id%20%3D%20%221YY5iwL8J53umfHMNhJd1m-MbRPtRpX65oyxhq1KjzuI%2F%22%0A%20%20%20%20doc_format%20%3D%20%22export%3Fformat%3Dcsv%22%0A%0A%20%20%20%20url%20%3D%20base_url%20%2B%20doc_id%20%2B%20doc_format%0A%0A%20%20%20%20df_raw%20%3D%20pd.read_csv(url)%0A%20%20%20%20return%20(df_raw%2C)%0A%0A%0A%40app.cell%0Adef%20_()%3A%0A%20%20%20%20%23%23%23%20CONFIG%3A%20written%20entirely%20by%20AI.%20Adapt%20this%20cell%20to%20your%20group's%20choices.%0A%20%20%20%20GROUP%20%3D%20%2206%22%0A%20%20%20%20CLAIM%20%3D%20%22As%20countries%20get%20richer%2C%20they%20pollute%20more.%22%0A%20%20%20%20MEMBERS%20%3D%20%22Rahevar%20Sumitsinh%20Dharmendrasinh%20%2C%20Shreenath%20Shreepathi%20Hebbar%22%0A%0A%20%20%20%20%23%20Column%20names%20in%20df_raw%20for%20country%20and%20year.%20CHECK%20with%20df_raw.columns!%0A%20%20%20%20COUNTRY_COL%20%3D%20%22country%22%0A%20%20%20%20YEAR_COL%20%3D%20%22date%22%0A%0A%20%20%20%20COUNTRIES%20%3D%20%5B%22Brazil%22%2C%20%22Germany%22%2C%20%22India%22%2C%20%22China%22%2C%20%22Nigeria%22%5D%20%20%23%20%3E%3D%205%0A%20%20%20%20MAIN%20%3D%20%22co2_per_capita%22%0A%20%20%20%20LABELS%20%3D%20%7B%0A%20%20%20%20%20%20%20%20%22co2_per_capita%22%3A%20%22CO2%20emissions%20per%20capita%20(tonnes%20per%20person)%22%2C%0A%20%20%20%20%20%20%20%20%22gdp_per_capita%22%3A%20%22GDP%20per%20capita%20(US%24)%22%2C%0A%20%20%20%20%20%20%20%20%22renewvable_energy_consumption%25%22%3A%20%22Renewable%20energy%20(%25%20of%20consumption)%22%2C%0A%20%20%20%20%20%20%20%20%22population_density%22%3A%20%22Population%20density%20(people%20per%20km%C2%B2)%22%2C%0A%20%20%20%20%7D%0A%20%20%20%20%23%20dropdown%3A%20%3E%3D%203%20indicators%20to%20compare%20with%20(NOT%20the%20main%20one)%0A%20%20%20%20COMPARE%20%3D%20%7B%0A%20%20%20%20%20%20%20%20LABELS%5B_k%5D%3A%20_k%0A%20%20%20%20%20%20%20%20for%20_k%20in%20%5B%0A%20%20%20%20%20%20%20%20%20%20%20%20%22gdp_per_capita%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22renewvable_energy_consumption%25%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22population_density%22%2C%0A%20%20%20%20%20%20%20%20%5D%0A%20%20%20%20%7D%0A%0A%20%20%20%20%23%20%2B1%20%3D%20claim%20expects%20a%20positive%20correlation%2C%20-1%20%3D%20a%20negative%20one%0A%20%20%20%20EXPECTED_SIGN%20%3D%201%0A%20%20%20%20METHOD%20%3D%20%22spearman%22%20%20%23%20or%20%22pearson%22%0A%0A%20%20%20%20WHY_CLAIM%20%3D%20%22TODO%3A%20why%20is%20this%20claim%20worth%20checking%3F%22%0A%20%20%20%20WHY_INDICATORS%20%3D%20%22TODO%3A%20why%20these%20indicators%3F%22%0A%20%20%20%20WHY_COUNTRIES%20%3D%20%22TODO%3A%20why%20these%20countries%3F%22%0A%20%20%20%20WHY_METHOD%20%3D%20%22TODO%3A%20why%20this%20method%3F%20(skewed%20values%2C%20outliers%2C%20curves%20...)%22%0A%20%20%20%20return%20(%0A%20%20%20%20%20%20%20%20CLAIM%2C%0A%20%20%20%20%20%20%20%20COMPARE%2C%0A%20%20%20%20%20%20%20%20COUNTRIES%2C%0A%20%20%20%20%20%20%20%20EXPECTED_SIGN%2C%0A%20%20%20%20%20%20%20%20GROUP%2C%0A%20%20%20%20%20%20%20%20LABELS%2C%0A%20%20%20%20%20%20%20%20MAIN%2C%0A%20%20%20%20%20%20%20%20MEMBERS%2C%0A%20%20%20%20%20%20%20%20METHOD%2C%0A%20%20%20%20%20%20%20%20WHY_CLAIM%2C%0A%20%20%20%20%20%20%20%20WHY_COUNTRIES%2C%0A%20%20%20%20%20%20%20%20WHY_INDICATORS%2C%0A%20%20%20%20%20%20%20%20WHY_METHOD%2C%0A%20%20%20%20)%0A%0A%0A%40app.cell%0Adef%20_(COUNTRIES%2C%20df_raw%2C%20pd)%3A%0A%20%20%20%20%23%23%23%20DATA%20PREP%3A%20written%20entirely%20by%20AI%0A%20%20%20%20df%20%3D%20df_raw.rename(columns%3D%7B%22date%22%3A%20%22year%22%7D)%0A%20%20%20%20if%20not%20pd.api.types.is_numeric_dtype(df%5B%22year%22%5D)%3A%0A%20%20%20%20%20%20%20%20df%5B%22year%22%5D%20%3D%20pd.to_datetime(df%5B%22year%22%5D%2C%20errors%3D%22coerce%22).dt.year%0A%20%20%20%20df%20%3D%20df%5Bdf%5B%22year%22%5D.between(2000%2C%202020)%20%26%20df%5B%22country%22%5D.isin(COUNTRIES)%5D.copy()%0A%20%20%20%20df%5B%22gdp_per_capita%22%5D%20%3D%20df%5B%22GDP_current_US%22%5D%20%2F%20df%5B%22population%22%5D%0A%20%20%20%20df%5B%22co2_per_capita%22%5D%20%3D%20df%5B%22CO2_emisions%22%5D%20*%201000%20%2F%20df%5B%22population%22%5D%0A%20%20%20%20df%5B%22rural_population%25%22%5D%20%3D%20df%5B%22rural_population%22%5D%20%2F%20df%5B%22population%22%5D%20*%20100%0A%20%20%20%20return%20(df%2C)%0A%0A%0A%40app.cell%0Adef%20_(CLAIM%2C%20GROUP%2C%20MEMBERS%2C%20WHY_CLAIM%2C%20WHY_COUNTRIES%2C%20WHY_INDICATORS%2C%20mo)%3A%0A%20%20%20%20%23%23%23%20TITLE%20%2B%20JUSTIFICATION%3A%20written%20entirely%20by%20AI%0A%20%20%20%20mo.md(%0A%20%20%20%20%20%20%20%20f%22%22%22%0A%20%20%20%20%23%20Group%20%7BGROUP%7D%20%C2%B7%20%22%7BCLAIM%7D%22%0A%20%20%20%20**Members%3A**%20%7BMEMBERS%7D%0A%0A%20%20%20%20**Why%20this%20claim%3A**%20%7BWHY_CLAIM%7D%20%26nbsp%3B%C2%B7%26nbsp%3B%20**Why%20these%20indicators%3A**%20%7BWHY_INDICATORS%7D%20%26nbsp%3B%C2%B7%26nbsp%3B%20**Why%20these%20countries%3A**%20%7BWHY_COUNTRIES%7D%0A%0A%20%20%20%20*How%20to%20use%3A%20choose%20an%20indicator%20and%20a%20period.%20Each%20dot%20is%20one%20country%20in%20one%20year%3B%20lines%20are%20trends%20per%20country.*%0A%20%20%20%20%22%22%22%0A%20%20%20%20)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_(COMPARE%2C%20mo)%3A%0A%20%20%20%20%23%23%23%20CONTROLS%3A%20written%20entirely%20by%20AI%0A%20%20%20%20indicator%20%3D%20mo.ui.dropdown(%0A%20%20%20%20%20%20%20%20options%3DCOMPARE%2C%20value%3Dlist(COMPARE)%5B0%5D%2C%20label%3D%22Compare%20with%22%0A%20%20%20%20)%0A%20%20%20%20period%20%3D%20mo.ui.range_slider(%0A%20%20%20%20%20%20%20%20start%3D2000%2C%20stop%3D2020%2C%20step%3D1%2C%20value%3D%5B2000%2C%202020%5D%2C%20label%3D%22Period%22%2C%20show_value%3DTrue%0A%20%20%20%20)%0A%20%20%20%20mo.hstack(%5Bindicator%2C%20period%5D%2C%20justify%3D%22start%22%2C%20gap%3D2)%0A%20%20%20%20return%20indicator%2C%20period%0A%0A%0A%40app.cell%0Adef%20_(MAIN%2C%20df%2C%20indicator%2C%20period)%3A%0A%20%20%20%20%23%23%23%20SELECTION%3A%20written%20entirely%20by%20AI%0A%20%20%20%20x_col%20%3D%20indicator.value%0A%20%20%20%20start_year%2C%20end_year%20%3D%20period.value%0A%20%20%20%20df_sel%20%3D%20df%5Bdf%5B%22year%22%5D.between(start_year%2C%20end_year)%5D%0A%20%20%20%20plot_df%20%3D%20(%0A%20%20%20%20%20%20%20%20df_sel%5B%5B%22country%22%2C%20%22year%22%2C%20x_col%2C%20MAIN%5D%5D%0A%20%20%20%20%20%20%20%20.dropna()%0A%20%20%20%20%20%20%20%20.rename(columns%3D%7Bx_col%3A%20%22x%22%2C%20MAIN%3A%20%22y%22%7D)%0A%20%20%20%20)%0A%20%20%20%20return%20df_sel%2C%20end_year%2C%20plot_df%2C%20start_year%2C%20x_col%0A%0A%0A%40app.cell%0Adef%20_(COUNTRIES%2C%20MAIN%2C%20METHOD%2C%20df_sel%2C%20pd%2C%20pg%2C%20x_col)%3A%0A%20%20%20%20%23%23%23%20CORRELATION%20PER%20COUNTRY%3A%20written%20entirely%20by%20AI%0A%20%20%20%20_rows%20%3D%20%5B%5D%0A%20%20%20%20notes%20%3D%20%5B%5D%0A%20%20%20%20for%20_c%20in%20COUNTRIES%3A%0A%20%20%20%20%20%20%20%20_d%20%3D%20df_sel.loc%5Bdf_sel%5B%22country%22%5D%20%3D%3D%20_c%2C%20%5Bx_col%2C%20MAIN%5D%5D.dropna()%0A%20%20%20%20%20%20%20%20if%20len(_d)%20%3C%205%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20notes.append(%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20f%22**%7B_c%7D%3A**%20only%20%7Blen(_d)%7D%20year(s)%20with%20data%20for%20this%20pair%20and%20period%2C%20so%20no%20test.%22%0A%20%20%20%20%20%20%20%20%20%20%20%20)%0A%20%20%20%20%20%20%20%20%20%20%20%20continue%0A%20%20%20%20%20%20%20%20if%20_d%5Bx_col%5D.nunique()%20%3C%202%20or%20_d%5BMAIN%5D.nunique()%20%3C%202%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20notes.append(%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20f%22**%7B_c%7D%3A**%20one%20of%20the%20indicators%20does%20not%20change%20in%20this%20period%2C%20so%20no%20test.%22%0A%20%20%20%20%20%20%20%20%20%20%20%20)%0A%20%20%20%20%20%20%20%20%20%20%20%20continue%0A%20%20%20%20%20%20%20%20_res%20%3D%20pg.corr(_d%5Bx_col%5D%2C%20_d%5BMAIN%5D%2C%20method%3DMETHOD)%0A%20%20%20%20%20%20%20%20%23%20column%20names%20differ%20a%20bit%20between%20pingouin%20versions%0A%20%20%20%20%20%20%20%20_ci_col%20%3D%20%5B_k%20for%20_k%20in%20_res.columns%20if%20_k.startswith(%22CI95%22)%5D%5B0%5D%0A%20%20%20%20%20%20%20%20_p_col%20%3D%20%22p_val%22%20if%20%22p_val%22%20in%20_res.columns%20else%20%22p-val%22%0A%20%20%20%20%20%20%20%20_ci%20%3D%20_res%5B_ci_col%5D.iloc%5B0%5D%0A%20%20%20%20%20%20%20%20_rows.append(%0A%20%20%20%20%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22country%22%3A%20_c%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22n%22%3A%20int(_res%5B%22n%22%5D.iloc%5B0%5D)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22r%22%3A%20float(_res%5B%22r%22%5D.iloc%5B0%5D)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22p_val%22%3A%20float(_res%5B_p_col%5D.iloc%5B0%5D)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22CI95%22%3A%20f%22%5B%7B_ci%5B0%5D%3A.2f%7D%2C%20%7B_ci%5B1%5D%3A.2f%7D%5D%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20)%0A%20%20%20%20results%20%3D%20pd.DataFrame(_rows%2C%20columns%3D%5B%22country%22%2C%20%22n%22%2C%20%22r%22%2C%20%22p_val%22%2C%20%22CI95%22%5D)%0A%20%20%20%20return%20notes%2C%20results%0A%0A%0A%40app.cell%0Adef%20_(METHOD%2C%20WHY_METHOD%2C%20end_year%2C%20mo%2C%20notes%2C%20results%2C%20start_year)%3A%0A%20%20%20%20%23%23%23%20TABLE%20%2B%20WARNINGS%3A%20written%20entirely%20by%20AI%0A%20%20%20%20_show%20%3D%20results.copy()%0A%20%20%20%20_show%5B%22r%22%5D%20%3D%20_show%5B%22r%22%5D.round(2)%0A%20%20%20%20_show%5B%22p%22%5D%20%3D%20_show%5B%22p_val%22%5D.map(lambda%20_p%3A%20%22%3C0.001%22%20if%20_p%20%3C%200.001%20else%20f%22%7B_p%3A.3f%7D%22)%0A%20%20%20%20_show%20%3D%20_show%5B%5B%22country%22%2C%20%22n%22%2C%20%22r%22%2C%20%22p%22%2C%20%22CI95%22%5D%5D.rename(%0A%20%20%20%20%20%20%20%20columns%3D%7B%22country%22%3A%20%22Country%22%7D%0A%20%20%20%20)%0A%20%20%20%20table%20%3D%20mo.ui.table(%0A%20%20%20%20%20%20%20%20_show%2C%0A%20%20%20%20%20%20%20%20selection%3DNone%2C%0A%20%20%20%20%20%20%20%20pagination%3DFalse%2C%0A%20%20%20%20%20%20%20%20show_download%3DFalse%2C%0A%20%20%20%20%20%20%20%20show_column_summaries%3DFalse%2C%0A%20%20%20%20)%0A%20%20%20%20callouts%20%3D%20mo.vstack(%5Bmo.callout(mo.md(_m)%2C%20kind%3D%22warn%22)%20for%20_m%20in%20notes%5D)%0A%20%20%20%20method_note%20%3D%20mo.md(%0A%20%20%20%20%20%20%20%20f%22**%7BMETHOD.capitalize()%7D**%2C%20%7Bstart_year%7D%E2%80%93%7Bend_year%7D.%20%7BWHY_METHOD%7D%22%0A%20%20%20%20)%0A%20%20%20%20return%20callouts%2C%20method_note%2C%20table%0A%0A%0A%40app.cell%0Adef%20_(%0A%20%20%20%20EXPECTED_SIGN%2C%0A%20%20%20%20LABELS%2C%0A%20%20%20%20MAIN%2C%0A%20%20%20%20METHOD%2C%0A%20%20%20%20end_year%2C%0A%20%20%20%20np%2C%0A%20%20%20%20results%2C%0A%20%20%20%20start_year%2C%0A%20%20%20%20x_col%2C%0A)%3A%0A%20%20%20%20%23%23%23%20VERDICT%20(draft%2C%20edit%20thresholds%2Fwording%20as%20a%20group)%3A%20written%20entirely%20by%20AI%0A%20%20%20%20_n%20%3D%20len(results)%0A%20%20%20%20if%20_n%20%3D%3D%200%3A%0A%20%20%20%20%20%20%20%20verdict_text%20%3D%20(%0A%20%20%20%20%20%20%20%20%20%20%20%20%22**Verdict%3A%20cannot%20tell.**%20No%20country%20has%20enough%20data%20for%20this%20pair%20and%20period.%22%0A%20%20%20%20%20%20%20%20)%0A%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20_sign%20%3D%20np.sign(results%5B%22r%22%5D)%0A%20%20%20%20%20%20%20%20_sig%20%3D%20results%5B%22p_val%22%5D%20%3C%200.05%0A%20%20%20%20%20%20%20%20_same%20%3D%20int((_sign%20%3D%3D%20EXPECTED_SIGN).sum())%0A%20%20%20%20%20%20%20%20_same_sig%20%3D%20int(((_sign%20%3D%3D%20EXPECTED_SIGN)%20%26%20_sig).sum())%0A%20%20%20%20%20%20%20%20_opp_sig%20%3D%20int(((_sign%20%3D%3D%20-EXPECTED_SIGN)%20%26%20_sig).sum())%0A%20%20%20%20%20%20%20%20_mean_abs%20%3D%20float(results%5B%22r%22%5D.abs().mean())%0A%20%20%20%20%20%20%20%20if%20_mean_abs%20%3C%200.1%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20_strength%20%3D%20%22negligible%22%0A%20%20%20%20%20%20%20%20elif%20_mean_abs%20%3C%200.3%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20_strength%20%3D%20%22small%22%0A%20%20%20%20%20%20%20%20elif%20_mean_abs%20%3C%200.5%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20_strength%20%3D%20%22moderate%22%0A%20%20%20%20%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20_strength%20%3D%20%22large%22%0A%0A%20%20%20%20%20%20%20%20if%20_same_sig%20%3E%3D%200.8%20*%20_n%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20_label%20%3D%20%22supports%20the%20claim%22%0A%20%20%20%20%20%20%20%20elif%20_opp_sig%20%3E%3D%200.8%20*%20_n%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20_label%20%3D%20%22contradicts%20the%20claim%22%0A%20%20%20%20%20%20%20%20elif%20_same_sig%20%2B%20_opp_sig%20%3D%3D%200%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20_label%20%3D%20%22cannot%20tell%20(nothing%20significant)%22%0A%20%20%20%20%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20_label%20%3D%20%22mixed%20picture%22%0A%0A%20%20%20%20%20%20%20%20verdict_text%20%3D%20(%0A%20%20%20%20%20%20%20%20%20%20%20%20f%22**Verdict%3A%20%7B_label%7D.**%20For%20%7BLABELS%5Bx_col%5D%7D%20vs.%20%7BLABELS%5BMAIN%5D%7D%20%22%0A%20%20%20%20%20%20%20%20%20%20%20%20f%22(%7Bstart_year%7D%E2%80%93%7Bend_year%7D%2C%20%7BMETHOD%7D)%2C%20the%20correlation%20points%20in%20the%20expected%20%22%0A%20%20%20%20%20%20%20%20%20%20%20%20f%22direction%20in%20%7B_same%7D%20of%20%7B_n%7D%20countries%20and%20is%20significant%20in%20%22%0A%20%20%20%20%20%20%20%20%20%20%20%20f%22%7Bint(_sig.sum())%7D%20of%20them%3B%20the%20average%20strength%20is%20%7B_strength%7D%20%22%0A%20%20%20%20%20%20%20%20%20%20%20%20f%22(mean%20%7Cr%7C%20%3D%20%7B_mean_abs%3A.2f%7D).%20%22%0A%20%20%20%20%20%20%20%20%20%20%20%20%22Years%20are%20not%20independent%2C%20so%20p-values%20are%20probably%20too%20optimistic%2C%20and%20shared%20%22%0A%20%20%20%20%20%20%20%20%20%20%20%20%22time%20trends%20can%20create%20strong%20correlations%20(see%20the%20*Over%20time*%20tab).%20%22%0A%20%20%20%20%20%20%20%20%20%20%20%20%22A%20correlation%20cannot%20show%20that%20one%20indicator%20causes%20the%20other%3B%20a%20third%20factor%20%22%0A%20%20%20%20%20%20%20%20%20%20%20%20%22could%20drive%20both.%22%0A%20%20%20%20%20%20%20%20)%0A%20%20%20%20return%20(verdict_text%2C)%0A%0A%0A%40app.cell%0Adef%20_(LABELS%2C%20MAIN%2C%20alt%2C%20plot_df%2C%20x_col)%3A%0A%20%20%20%20%23%23%23%20SCATTERPLOT%3A%20written%20entirely%20by%20AI%0A%20%20%20%20_base%20%3D%20alt.Chart(plot_df).encode(%0A%20%20%20%20%20%20%20%20x%3Dalt.X(%22x%3AQ%22%2C%20title%3DLABELS%5Bx_col%5D%2C%20scale%3Dalt.Scale(zero%3DFalse))%2C%0A%20%20%20%20%20%20%20%20y%3Dalt.Y(%22y%3AQ%22%2C%20title%3DLABELS%5BMAIN%5D%2C%20scale%3Dalt.Scale(zero%3DFalse))%2C%0A%20%20%20%20%20%20%20%20color%3Dalt.Color(%22country%3AN%22%2C%20title%3D%22Country%22)%2C%0A%20%20%20%20)%0A%20%20%20%20_points%20%3D%20_base.mark_circle(size%3D45%2C%20opacity%3D0.7).encode(%0A%20%20%20%20%20%20%20%20tooltip%3D%5B%0A%20%20%20%20%20%20%20%20%20%20%20%20alt.Tooltip(%22country%3AN%22%2C%20title%3D%22Country%22)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20alt.Tooltip(%22year%3AQ%22%2C%20title%3D%22Year%22%2C%20format%3D%22d%22)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20alt.Tooltip(%22x%3AQ%22%2C%20title%3DLABELS%5Bx_col%5D%2C%20format%3D%22%2C.2f%22)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20alt.Tooltip(%22y%3AQ%22%2C%20title%3DLABELS%5BMAIN%5D%2C%20format%3D%22%2C.2f%22)%2C%0A%20%20%20%20%20%20%20%20%5D%0A%20%20%20%20)%0A%20%20%20%20_lines%20%3D%20_base.transform_regression(%22x%22%2C%20%22y%22%2C%20groupby%3D%5B%22country%22%5D).mark_line()%0A%20%20%20%20scatter%20%3D%20(_points%20%2B%20_lines).properties(width%3D400%2C%20height%3D300)%0A%20%20%20%20return%20(scatter%2C)%0A%0A%0A%40app.cell%0Adef%20_(LABELS%2C%20MAIN%2C%20alt%2C%20df_sel%2C%20mo%2C%20x_col)%3A%0A%20%20%20%20%23%23%23%20OVER%20TIME%20%2B%20DISTRIBUTIONS%20(tabs%20content)%3A%20written%20entirely%20by%20AI%0A%20%20%20%20def%20_line(_col)%3A%0A%20%20%20%20%20%20%20%20_d%20%3D%20df_sel%5B%5B%22country%22%2C%20%22year%22%2C%20_col%5D%5D.rename(columns%3D%7B_col%3A%20%22value%22%7D)%0A%20%20%20%20%20%20%20%20return%20(%0A%20%20%20%20%20%20%20%20%20%20%20%20alt.Chart(_d)%0A%20%20%20%20%20%20%20%20%20%20%20%20.mark_line(point%3DTrue)%0A%20%20%20%20%20%20%20%20%20%20%20%20.encode(%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20x%3Dalt.X(%22year%3AQ%22%2C%20title%3D%22Year%22%2C%20axis%3Dalt.Axis(format%3D%22d%22))%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20y%3Dalt.Y(%22value%3AQ%22%2C%20title%3DLABELS%5B_col%5D%2C%20scale%3Dalt.Scale(zero%3DFalse))%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20color%3Dalt.Color(%22country%3AN%22%2C%20title%3D%22Country%22)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20tooltip%3D%5B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20alt.Tooltip(%22country%3AN%22%2C%20title%3D%22Country%22)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20alt.Tooltip(%22year%3AQ%22%2C%20title%3D%22Year%22%2C%20format%3D%22d%22)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20alt.Tooltip(%22value%3AQ%22%2C%20title%3DLABELS%5B_col%5D%2C%20format%3D%22%2C.2f%22)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%5D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20)%0A%20%20%20%20%20%20%20%20%20%20%20%20.properties(width%3D330%2C%20height%3D230)%0A%20%20%20%20%20%20%20%20)%0A%0A%20%20%20%20def%20_hist(_col)%3A%0A%20%20%20%20%20%20%20%20_d%20%3D%20df_sel%5B%5B%22country%22%2C%20_col%5D%5D.dropna().rename(columns%3D%7B_col%3A%20%22value%22%7D)%0A%20%20%20%20%20%20%20%20return%20(%0A%20%20%20%20%20%20%20%20%20%20%20%20alt.Chart(_d)%0A%20%20%20%20%20%20%20%20%20%20%20%20.mark_bar()%0A%20%20%20%20%20%20%20%20%20%20%20%20.encode(%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20x%3Dalt.X(%22value%3AQ%22%2C%20bin%3Dalt.Bin(maxbins%3D15)%2C%20title%3DLABELS%5B_col%5D)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20y%3Dalt.Y(%22count()%22%2C%20title%3D%22Country-years%22)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20color%3Dalt.Color(%22country%3AN%22%2C%20title%3D%22Country%22)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20)%0A%20%20%20%20%20%20%20%20%20%20%20%20.properties(width%3D330%2C%20height%3D200)%0A%20%20%20%20%20%20%20%20)%0A%0A%20%20%20%20time_view%20%3D%20mo.hstack(%5B_line(MAIN)%2C%20_line(x_col)%5D%2C%20align%3D%22start%22)%0A%20%20%20%20dist_view%20%3D%20mo.hstack(%5B_hist(MAIN)%2C%20_hist(x_col)%5D%2C%20align%3D%22start%22)%0A%20%20%20%20return%20dist_view%2C%20time_view%0A%0A%0A%40app.cell%0Adef%20_(%0A%20%20%20%20callouts%2C%0A%20%20%20%20dist_view%2C%0A%20%20%20%20method_note%2C%0A%20%20%20%20mo%2C%0A%20%20%20%20scatter%2C%0A%20%20%20%20table%2C%0A%20%20%20%20time_view%2C%0A%20%20%20%20verdict_text%2C%0A)%3A%0A%20%20%20%20%23%23%23%20LAYOUT%20WITH%20TABS%3A%20written%20entirely%20by%20AI%0A%20%20%20%20_side%20%3D%20mo.vstack(%5Bmethod_note%2C%20table%2C%20callouts%5D)%0A%20%20%20%20_claim_check%20%3D%20mo.vstack(%0A%20%20%20%20%20%20%20%20%5Bmo.hstack(%5Bscatter%2C%20_side%5D%2C%20align%3D%22start%22%2C%20gap%3D2)%2C%20mo.md(verdict_text)%5D%0A%20%20%20%20)%0A%20%20%20%20mo.ui.tabs(%0A%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%22Claim%20check%22%3A%20_claim_check%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22Over%20time%22%3A%20time_view%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22Distributions%22%3A%20dist_view%2C%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20)%0A%20%20%20%20return%0A%0A%0Aif%20__name__%20%3D%3D%20%22__main__%22%3A%0A%20%20%20%20app.run()%0A</marimo-code></head>
+  <body>
+    <div id="root"></div>
+    <script data-marimo="true">
+      Object.defineProperty(window, "__MARIMO_MOUNT_CONFIG__", {
+        value: Object.freeze({
+            "filename": "notebook.py",
+            "cwd": "",
+            "lspWorkspace": null,
+            "mode": "read",
+            "version": "0.25.2",
+            "serverToken": "unused",
+            "config": {"ai": {"allow_provider_config": true, "custom_providers": {}, "enabled": true, "models": {"custom_models": [], "displayed_models": []}}, "completion": {"activate_on_typing": true, "auto_close_pairs": true, "copilot": false, "signature_hint_on_typing": false}, "diagnostics": {"sql_linter": true}, "display": {"cell_output": "below", "code_editor_font_size": 14, "code_lens": true, "dataframes": "rich", "default_table_max_columns": 50, "default_table_page_size": 10, "default_width": "medium", "reference_highlighting": true, "theme": "light"}, "formatting": {"line_length": 79}, "keymap": {"overrides": {}, "preset": "default"}, "language_servers": {"pylsp": {"enable_flake8": false, "enable_mypy": true, "enable_pydocstyle": false, "enable_pyflakes": false, "enable_pylint": false, "enable_ruff": true, "enabled": false}}, "mcp": {"mcpServers": {}, "presets": []}, "package_management": {"manager": "pip"}, "runtime": {"auto_instantiate": false, "auto_reload": "off", "default_csv_encoding": "utf-8", "default_sql_output": "auto", "on_cell_change": "autorun", "output_max_bytes": 8000000, "reactive_tests": true, "show_tracebacks": false, "std_stream_max_bytes": 1000000, "watcher_on_save": "lazy"}, "save": {"autosave": "off", "autosave_delay": 1000, "format_on_save": false}, "server": {"browser": "default", "follow_symlink": false}, "snippets": {"custom_paths": [], "include_default_snippets": true}},
+            "configOverrides": {},
+            "appConfig": {"sql_output": "auto", "width": "medium"},
+            "layout": null,
+            "view": {"showAppCode": false},
+            "notebook": null,
+            "session": null,
+            "runtimeConfig": null
+        }),
+        writable: false,
+        configurable: false,
+      });
+    </script>
+  </body>
+</html>
